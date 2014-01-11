@@ -1,0 +1,7 @@
+_site
+.DS_STORE
+.sass-cache/
+.bundle/
+css/
+Gemfile.lock
+*.html
