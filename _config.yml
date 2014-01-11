@@ -1,0 +1,5 @@
+name: Trevor
+markdown: redcarpet
+highlighter: pygments
+
+exclude: ['*.haml', 'sass', 'Rakefile', 'Gemfile', 'Gemfile.lock']
