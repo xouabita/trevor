@@ -7,12 +7,12 @@ Haml and Sass static website with Jekyll
 
 Just clone this repo :
   
-  git clone https://github.com/xouabita/trevor.git
+    git clone https://github.com/xouabita/trevor.git
   
 ## Build
 
-  rake build
+    rake build
   
 ## Clean
   
-  rake clean
+    rake clean
