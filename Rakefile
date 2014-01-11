@@ -1,12 +1,31 @@
 require 'haml'
 require 'fileutils'
+require 'fssm'
 
 def haml file
 	dir_name  = File.dirname(file)
 	out_name  = File.basename(file,'.haml') + ".html"
 	html      = File.open(file, 'r') { |f| Haml::Engine.new(f.read).render }
 	File.open(File.join(dir_name, out_name), 'w') { |f| f.write html }
-end 
+end
+
+def haml_watcher
+	FSSM.monitor do
+		
+		path './' do
+			glob '**/*.haml'
+
+			update do |base, relative|
+				haml File.join(base,relative)
+			end
+
+			create do |base, relative|
+				haml File.join(base,relative)
+			end
+		end
+
+	end
+end
 
 desc 'Build haml files'
 task :build_haml do
@@ -30,4 +49,19 @@ task :clean do
 	if File.exist?('./_site') then FileUtils.rm_rf './_site' end
 	if File.exist?('./css')   then FileUtils.rm_rf './css' end
 	FileUtils.rm Dir.glob('./**/*.html')
+end
+
+task :serve => :build do
+	haml  = Thread.new { haml_watcher }
+	server = Thread.new { sh "jekyll serve -w"}
+	sass = Thread.new { sh "sass --watch sass:css" }
+	haml.join
+	server.join
+	sass.join
+
+	trap "INT" do
+		Thread.kill (haml)
+		Thread.kill (sass)
+		Thread.kill (server)
+	end
 end
