@@ -5,8 +5,7 @@ require 'fssm'
 def haml file
 	dir_name  = File.dirname(file)
 	out_name  = File.basename(file,'.haml') + ".html"
-	html      = File.open(file, 'r') { |f| Haml::Engine.new(f.read).render }
-	File.open(File.join(dir_name, out_name), 'w') { |f| f.write html }
+	%x{ haml #{file} #{File.join(dir_name, out_name)} }
 end
 
 def haml_watcher
