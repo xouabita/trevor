@@ -23,11 +23,15 @@ Then install dependencies
 ## Build
 
 You can easily build your website with :
+
 	rake build
+
 It will compile your haml and sass then render your website with jekyll build
 
 You can also serve your website with
+
 	rake serve
+	
 It will watch for changes with your sass and haml file.
 
 ## Clean
