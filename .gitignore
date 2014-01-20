@@ -3,5 +3,4 @@ _site
 .sass-cache/
 .bundle/
 css/
-Gemfile.lock
 *.html
