@@ -12,6 +12,7 @@ Haml and Sass static website with Jekyll
 ## Install
 
 Just clone this repo :
+
 	git clone https://github.com/xouabita/trevor.git trevor
 	cd trevor
 
@@ -31,9 +32,13 @@ It will compile your haml and sass then render your website with jekyll build
 You can also serve your website with
 
 	rake serve
-	
+
 It will watch for changes with your sass and haml file.
 
 ## Clean
   
     rake clean
+
+[1]: http://git-scm.com/
+[2]: https://www.ruby-lang.org/
+[3]: http://bundler.io/
